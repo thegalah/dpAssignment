@@ -10,7 +10,7 @@ create table `cinemas`(
 	primary key(`id`),
 	unique key(`name`,`address`)
 )ENGINE=MyISAM DEFAULT CHARSET=latin1;
-insert into `cinemas` (name,address,latitude,longitude,status) VALUES
+insert into `cinemas` (name,address,longitude,latitude,status) VALUES
 	('A','Shanghai','121.47','31.23','open'),
 	('B','Bombay','72.82','18.96','open'),
 	('C','Karachi','67.01','24.86','open'),
