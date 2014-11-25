@@ -12,4 +12,6 @@ localhost:8000/
 
 Requires:
 ==
-phpbrew install 5.6.3 +mysql +pdo +default
+-phpbrew install 5.6.3 +mysql +pdo +default
+-mysql server on localhost
+-(optional)importation of database.sql data
