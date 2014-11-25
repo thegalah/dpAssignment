@@ -17,7 +17,8 @@ $router->get('/home', 'HomeController@index');
 
 $router->get('/cinemas',function(){
 	//show available cinemas
-	return 'cinemas list';
+	$results = DB::select('select * from cinemas where status="open"');
+	return response()->json($results);
 });
 
 
