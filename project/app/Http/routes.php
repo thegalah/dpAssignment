@@ -15,6 +15,21 @@ $router->get('/', 'WelcomeController@index');
 
 $router->get('/home', 'HomeController@index');
 
+$router->get('/cinemas',function(){
+	//show available cinemas
+	return 'cinemas list';
+});
+
+
+$router->get('/cinemas/{name}',function($cinemaName){
+	//show information about a particular cinema
+	return 'cinema info';
+});
+
+$router->get('/movies/{name}',function($movieName){
+	//show information for a particular movie
+	return 'movie information';
+});
 /*
 |--------------------------------------------------------------------------
 | Authentication & Password Reset Controllers
