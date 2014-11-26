@@ -42,7 +42,9 @@ $router->get('/cinemas/{name}',function($cinemaName){
 $router->get('/movies/{name}',function($movieName){
 	//show information for a particular movie
 
-	return 'movie information';
+	$results = DB::select('select * from movies where name=?',array($movieName));
+
+	return response()->json($results);
 });
 /*
 |--------------------------------------------------------------------------
