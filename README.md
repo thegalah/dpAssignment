@@ -13,9 +13,20 @@ localhost:chosen_port/
 
 **Usage:**
 ===
-**/cinemas**
-lists cinemas **optional get url variables are**:
+**/cinemas** lists cinemas with optional pagination parameters
 
+**/cinemas/{name}** shows the details of the cinema
+
+**/movies/{name}** shows details of a particular movie
+
+**/movies/sessions/{name}** shows all upcoming sessions for a movie with optional pagination parameters
+
+**/upcoming** shows all upcoming sessions with optional pagination parameters
+
+**/past** shows all the past sessions with optional pagination parameters
+
+**optional get url variables are**:
+===
 -  _**results_per_page**_ which sets the number of cinema results to display per page (default5)
 -  _**page**_ which sets the page to return (default 1)
 
