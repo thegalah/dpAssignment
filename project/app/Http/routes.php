@@ -17,7 +17,7 @@
 
 $router->get('/cinemas',function(){
 	//show available cinemas
-	$results = DB::select('select * from cinemas where status="open"'); //select all query
+	$results = DB::select('select id, name from cinemas where status="open"'); //select all query
 
 	$results_per_page=(int)Input::get('results_per_page')?:5; //configurable, default 5
 

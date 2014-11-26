@@ -8,7 +8,7 @@ create table `cinemas`(
 	`longitude` text not null,
 	`status` enum('open','renovation','bankrupt') DEFAULT 'open',
 	primary key(`id`),
-	unique key(`name`,`address`)
+	unique key(`name`)
 )ENGINE=MyISAM DEFAULT CHARSET=latin1;
 insert into `cinemas` (name,address,longitude,latitude,status) VALUES
 	('A','Shanghai','121.47','31.23','open'),
