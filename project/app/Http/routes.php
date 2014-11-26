@@ -34,13 +34,14 @@ $router->get('/cinemas',function(){
 $router->get('/cinemas/{name}',function($cinemaName){
 	//show information about a particular cinema
 
-	$results = DB::select('select * from cinemas where name=? limit 1',array($cinemaName));
+	$results = DB::select('select * from cinemas where name=?',array($cinemaName));
 
 	return response()->json($results);
 });
 
 $router->get('/movies/{name}',function($movieName){
 	//show information for a particular movie
+
 	return 'movie information';
 });
 /*

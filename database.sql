@@ -1,4 +1,5 @@
 drop table if exists `cinemas`;
+
 create table `cinemas`(
 	`id` int(11) not null auto_increment,
 	`created` timestamp not null default current_timestamp,
@@ -8,8 +9,9 @@ create table `cinemas`(
 	`longitude` text not null,
 	`status` enum('open','renovation','bankrupt') DEFAULT 'open',
 	primary key(`id`),
-	unique key(`name`)
+	unique key(`name`,`address`)
 )ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
 insert into `cinemas` (name,address,longitude,latitude,status) VALUES
 	('A','Shanghai','121.47','31.23','open'),
 	('B','Bombay','72.82','18.96','open'),
@@ -29,3 +31,29 @@ insert into `cinemas` (name,address,longitude,latitude,status) VALUES
 	('P','Jakarta','106.83','-6.18','open'),
 	('Q','New York','-73.94','40.67','open'),
 	('R','Tehran','51.43','35.67','open');
+
+drop table if exists `movies`;
+
+create table `movies`(
+	`id` int(11) not null auto_increment,
+	`created` timestamp not null default current_timestamp,
+	`name` varchar(100) not null,
+	`year` int(4) not null,
+	`duration` varchar(5) not null,
+	`rating` varchar(10) not null,	
+	primary key(`id`),
+	unique key(`name`,`year`,`duration`)
+)ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+insert into `movies` (name,year,duration,rating) VALUES
+	('The Shawshank Redemption',1994,142,'R'),
+	('The Godfather',1972,175,'R'),
+	('The Godfather: Part II',1974,200,'R'),
+	('The Dark Knight',2008,152,'PG-13'),
+	('Pulp Fiction',1994,154,'R'),
+	('The Good, the Bad and the Ugly',1996,161,'NR'),
+	('Schindler\'s List',1993,195,'R'),
+	('12 Angry Men',1957,96,'NR'),
+	('The Lord of the Rings: The return of the King',2003,201,'PG-13'),
+	('Fight Club',1999,139,'R')
+	;
