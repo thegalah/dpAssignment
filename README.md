@@ -19,7 +19,7 @@ lists cinemas **optional get url variables are**:
 -  _**results_per_page**_ which sets the number of cinema results to display per page (default5)
 -  _**page**_ which sets the page to return (default 1)
 
-**/cinemas/{name}
+**/cinemas/{name}**
 shows details about a particular cinema
 
 **Requires:**
