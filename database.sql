@@ -57,3 +57,58 @@ insert into `movies` (name,year,duration,rating) VALUES
 	('The Lord of the Rings: The return of the King',2003,201,'PG-13'),
 	('Fight Club',1999,139,'R')
 	;
+
+drop table if exists `session_times`;
+
+create table `session_times`(
+	`id` int(11) not null auto_increment,
+	`created` timestamp not null default current_timestamp,
+	`movie_id` int(11) not null,
+	`cinema_id` int(11) not null,
+	`time_start` timestamp not null,	
+	primary key(`id`),
+	unique key(`movie_id`,`cinema_id`,`time_start`)
+)ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+insert into `session_times`(movie_id,cinema_id,time_start) VALUES
+	(1,14,now()+INTERVAL 1 HOUR),
+	(2,15,now()+INTERVAL 5 HOUR),
+	(3,16,now()+INTERVAL 6 HOUR),
+	(4,17,now()+INTERVAL 5 HOUR),
+	(5,18,now()+INTERVAL 5 HOUR),
+	(6,17,now()+INTERVAL 4 HOUR),
+	(7,16,now()+INTERVAL 7 HOUR),
+	(8,15,now()+INTERVAL 1 HOUR),
+	(9,14,now()+INTERVAL 3 HOUR),
+	(10,13,now()+INTERVAL 2 HOUR),
+	(1,12,now()+INTERVAL 4 HOUR),
+	(2,11,now()+INTERVAL 3 HOUR),
+	(3,10,now()+INTERVAL 4 HOUR),
+	(4,9,now()+INTERVAL 2 HOUR),
+	(5,8,now()+INTERVAL 1 HOUR),
+	(6,7,now()+INTERVAL 0 HOUR),
+	(7,6,now()+INTERVAL 0 HOUR),
+	(8,5,now()+INTERVAL 2 HOUR),
+	(9,4,now()+INTERVAL 1 HOUR),
+	(10,3,now()+INTERVAL 1 HOUR),
+	(1,2,DATE_SUB(now(),INTERVAL 2 HOUR)),
+	(2,1,DATE_SUB(now(),INTERVAL 6 HOUR)),
+	(3,1,now()+INTERVAL 3 HOUR),
+	(4,2,now()+INTERVAL 2 HOUR),
+	(5,3,now()+INTERVAL 4 HOUR),
+	(6,4,now()+INTERVAL 3 HOUR),
+	(7,5,now()+INTERVAL 2 HOUR),
+	(8,6,now()+INTERVAL 2 HOUR),
+	(9,7,now()+INTERVAL 2 HOUR),
+	(10,8,DATE_SUB(now(),INTERVAL 2 HOUR)),
+	(1,9,now()+INTERVAL 2 HOUR),
+	(2,10,now()+INTERVAL 3 HOUR),
+	(3,11,now()+INTERVAL 4 HOUR),
+	(4,12,now()+INTERVAL 3 HOUR),
+	(5,13,now()+INTERVAL 3 HOUR),
+	(6,14,now()+INTERVAL 2 HOUR),
+	(7,15,now()+INTERVAL 1 HOUR),
+	(8,16,now()+INTERVAL 1 HOUR),
+	(9,17,now()+INTERVAL 1 HOUR),
+	(10,18,now()+INTERVAL 1 HOUR)
+	;

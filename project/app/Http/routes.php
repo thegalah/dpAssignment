@@ -19,13 +19,13 @@ $router->get('/cinemas',function(){
 	//show available cinemas
 	$results = DB::select('select id, name from cinemas where status="open"'); //select all query
 
-	$results_per_page=(int)Input::get('results_per_page')?:5; //configurable, default 5
+	$rpp=(int)Input::get('results_per_page')?:5; //configurable, default 5
 
 	$out['page']=(int)Input::get('page')?:1; //page 1 by default
 
-	$out['pages']=ceil(count($results)/$results_per_page); //total number of pages
+	$out['pages']=ceil(count($results)/$rpp); //total number of pages
 
-	$out['cinemas']=array_splice($results,($out['page']-1)*$results_per_page,$results_per_page); //remove unecessary results
+	$out['results']=array_splice($results,($out['page']-1)*$rpp,$rpp); //remove unecessary results
 
 	return response()->json($out);
 });
@@ -46,6 +46,40 @@ $router->get('/movies/{name}',function($movieName){
 
 	return response()->json($results);
 });
+
+$router->get('/upcoming',function(){
+	//show all upcoming movie sessions
+
+	$results = DB::select('SELECT movies.name,movies.duration, movies.rating,session_times.time_start, cinemas.name as cinema,cinemas.address FROM session_times left join movies on movies.id=session_times.movie_id left join cinemas on session_times.cinema_id=cinemas.id where time_start>now();');
+
+	$rpp=(int)Input::get('results_per_page')?:5; //configurable, default 5
+
+	$out['page']=(int)Input::get('page')?:1; //page 1 by default
+
+	$out['pages']=ceil(count($results)/$rpp); //total number of pages
+
+	$out['results']=array_splice($results,($out['page']-1)*$rpp,$rpp); //remove unecessary 
+
+	return response()->json($out);
+});
+
+$router->get('/past',function(){
+	//show all past movie sessions
+
+	$results = DB::select('SELECT movies.name,movies.duration, movies.rating,session_times.time_start, cinemas.name as cinema,cinemas.address FROM session_times left join movies on movies.id=session_times.movie_id left join cinemas on session_times.cinema_id=cinemas.id where time_start<now();');
+	
+	$rpp=(int)Input::get('results_per_page')?:5; //configurable, default 5
+
+	$out['page']=(int)Input::get('page')?:1; //page 1 by default
+
+	$out['pages']=ceil(count($results)/$rpp); //total number of pages
+
+	$out['results']=array_splice($results,($out['page']-1)*$rpp,$rpp); //remove unecessary 
+
+	return response()->json($out);
+});
+
+
 /*
 |--------------------------------------------------------------------------
 | Authentication & Password Reset Controllers
