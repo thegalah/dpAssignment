@@ -11,14 +11,23 @@
 |
 */
 
-$router->get('/', 'WelcomeController@index');
+//$router->get('/', 'WelcomeController@index');
 
-$router->get('/home', 'HomeController@index');
+//$router->get('/home', 'HomeController@index');
 
 $router->get('/cinemas',function(){
 	//show available cinemas
-	$results = DB::select('select * from cinemas where status="open"');
-	return response()->json($results);
+	$results = DB::select('select * from cinemas where status="open"'); //select all query
+
+	$results_per_page=(int)Input::get('results_per_page')?:5; //configurable, default 5
+
+	$out['page']=(int)Input::get('page')?:1; //page 1 by default
+
+	$out['pages']=ceil(count($results)/$results_per_page); //total number of pages
+
+	$out['cinemas']=array_splice($results,($out['page']-1)*$results_per_page,$results_per_page); //remove unecessary results
+
+	return response()->json($out);
 });
 
 
