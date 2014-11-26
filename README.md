@@ -8,16 +8,19 @@ A RESTful API using the Laravel 5 Dev framework and mysql
 
 **API accessible from:**
 
-localhost:8000/
+localhost:chosen_port/
 
 
 **Usage:**
 ===
-**/cinemas**:
+**/cinemas**
 lists cinemas **optional get url variables are**:
 
 -  _**results_per_page**_ which sets the number of cinema results to display per page (default5)
 -  _**page**_ which sets the page to return (default 1)
+
+**/cinemas/{name}
+shows details about a particular cinema
 
 **Requires:**
 ===

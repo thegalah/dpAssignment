@@ -33,7 +33,10 @@ $router->get('/cinemas',function(){
 
 $router->get('/cinemas/{name}',function($cinemaName){
 	//show information about a particular cinema
-	return 'cinema info';
+
+	$results = DB::select('select * from cinemas where name=? limit 1',array($cinemaName));
+
+	return response()->json($results);
 });
 
 $router->get('/movies/{name}',function($movieName){
